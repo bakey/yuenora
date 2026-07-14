@@ -1,0 +1,122 @@
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.brand-mark img {
+  width: 38px !important;
+  height: 38px !important;
+  flex: 0 0 auto;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.brand-mark__text {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.brand-mark__text b {
+  display: block;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: .22em;
+  white-space: nowrap;
+}
+
+.brand-mark__text small {
+  display: block;
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: .88;
+}
+
+.brand-mark--compact img {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+.dao-logo {
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0;
+}
+
+.dao-logo .brand-mark__text b,
+.commerce-logo .brand-mark__text b {
+  font-size: 16px;
+  letter-spacing: .2em;
+}
+
+.dao-logo .brand-mark__text small,
+.commerce-logo .brand-mark__text small {
+  font-size: 7px;
+}
+
+.commerce-logo .brand-mark,
+.commerce-logo.brand-mark {
+  color: inherit;
+}
+
+.commerce-logo .brand-mark img,
+.commerce-logo.brand-mark img {
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 800px) {
+  .brand-mark img {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .brand-mark__text b {
+    font-size: 15px;
+    letter-spacing: .18em;
+  }
+
+  .brand-mark__text small {
+    font-size: 7px;
+    letter-spacing: .16em;
+  }
+
+  .tao-diy-mobile-logo.brand-mark {
+    display: inline-flex !important;
+    width: auto !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: #f7e4be !important;
+  }
+
+  .tao-diy-mobile-logo.brand-mark img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .tao-diy-mobile-logo .brand-mark__text b {
+    font-size: 24px !important;
+    letter-spacing: .24em !important;
+  }
+
+  .tao-diy-mobile-logo .brand-mark__text small {
+    font-size: 8px !important;
+    letter-spacing: .22em !important;
+  }
+
+  .blessing-mobile-logo.brand-mark {
+    color: #322012;
+  }
+}

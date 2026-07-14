@@ -1,0 +1,36 @@
+/*
+ * Scroll ownership
+ * When the cursor is over an internal scroll panel, wheel / trackpad input
+ * must stay inside that panel instead of bubbling into the full-page Lenis scroll.
+ */
+.tao-gift-panel,
+.product-catalog-tabs,
+.product-catalog-main,
+.product-detail-panel,
+.temple-journal-strip,
+.collection-track,
+.tao-tray-content,
+.tao-main-material-tabs,
+.tao-tray-grid,
+.tao-preview-shell,
+.tao-designer-shell,
+.tao-gallery-carousel,
+.tao-gallery-thumbs,
+.beat-gallery-thumbs,
+.beat-gallery-viewport {
+  overscroll-behavior: contain;
+}
+
+.tao-gift-panel,
+.product-catalog-tabs,
+.product-catalog-main,
+.product-detail-panel,
+.temple-journal-strip,
+.collection-track,
+.tao-tray-content,
+.tao-main-material-tabs,
+.tao-tray-grid,
+.beat-gallery-thumbs {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}

@@ -1,0 +1,2523 @@
+.tao-diy-entry {
+  position: relative;
+  min-height: 86vh;
+  overflow: hidden;
+  padding: clamp(92px, 10vw, 150px) clamp(24px, 6vw, 96px);
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.86), transparent 36%),
+    linear-gradient(180deg, rgba(250, 244, 229, 0.88), rgba(231, 214, 178, 0.74)),
+    #efe1c2;
+  color: #241b13;
+  isolation: isolate;
+}
+
+@media (max-width: 760px) {
+  .tao-gift-panel {
+    width: calc(100vw - 16px) !important;
+    max-height: calc(100vh - 16px) !important;
+    padding: 18px !important;
+    border-radius: 18px !important;
+    overflow: auto !important;
+  }
+
+  .tao-gift-form h2 {
+    font-size: 30px !important;
+    line-height: 1.18 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .tao-gift-form > p,
+  .tao-gift-option p {
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+  }
+
+  .tao-gift-options,
+  .tao-gift-options.compact {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .tao-gift-option {
+    min-height: 72px !important;
+    padding: 12px 14px !important;
+  }
+
+  .tao-gift-style {
+    display: flex !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .tao-gift-style button {
+    flex: 0 0 auto !important;
+    min-width: 108px !important;
+  }
+
+  .tao-gift-next-row {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .tao-intention-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tao-diy-entry-copy h2 {
+    font-size: clamp(42px, 12vw, 64px) !important;
+    line-height: 1.04 !important;
+  }
+}
+
+/* Final modal treatment: keep the questionnaire readable without covering the background art. */
+.tao-diy-entry .tao-gift-backdrop {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(179, 124, 42, .16), transparent 34%),
+    rgba(4, 3, 2, .46) !important;
+  backdrop-filter: blur(4px) saturate(.92) !important;
+}
+
+.tao-diy-entry .tao-gift-panel {
+  background: transparent !important;
+  background-image: none !important;
+  border-color: rgba(202, 154, 79, .56) !important;
+  box-shadow:
+    0 42px 110px rgba(0, 0, 0, .42),
+    inset 0 0 0 1px rgba(238, 199, 128, .14) !important;
+  color: #f5e8cf !important;
+}
+
+.tao-diy-entry .tao-gift-panel::before {
+  border-color: rgba(202, 154, 79, .3) !important;
+}
+
+.tao-diy-entry .tao-gift-panel::after {
+  opacity: .12 !important;
+}
+
+.tao-diy-entry .tao-gift-close {
+  background: rgba(12, 9, 6, .58) !important;
+  color: #f2d7a2 !important;
+  border-color: rgba(202, 154, 79, .46) !important;
+}
+
+.tao-diy-entry .tao-gift-form h3,
+.tao-diy-entry .tao-gift-result h3 {
+  color: #f7e8c9 !important;
+  text-shadow: 0 18px 50px rgba(0, 0, 0, .62) !important;
+}
+
+.tao-diy-entry .tao-gift-form > .eyebrow,
+.tao-diy-entry .tao-gift-result > .eyebrow {
+  color: #d8aa5f !important;
+}
+
+.tao-diy-entry .tao-gift-options button,
+.tao-diy-entry .tao-gift-style button {
+  background: linear-gradient(135deg, rgba(18, 14, 10, .62), rgba(18, 14, 10, .36)) !important;
+  border-color: rgba(202, 154, 79, .28) !important;
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, .26),
+    inset 0 0 0 1px rgba(255, 237, 199, .08) !important;
+  color: #f3dfb8 !important;
+}
+
+.tao-diy-entry .tao-gift-options button:hover,
+.tao-diy-entry .tao-gift-style button:hover {
+  border-color: rgba(202, 154, 79, .62) !important;
+  background: linear-gradient(135deg, rgba(36, 25, 14, .72), rgba(22, 16, 10, .48)) !important;
+}
+
+.tao-diy-entry .tao-gift-options button.active,
+.tao-diy-entry .tao-gift-style button.active {
+  background: linear-gradient(135deg, rgba(87, 56, 19, .72), rgba(28, 18, 10, .52)) !important;
+  border-color: rgba(216, 160, 63, .9) !important;
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, .28),
+    inset 0 0 0 1px rgba(255, 218, 148, .18) !important;
+}
+
+.tao-diy-entry .tao-gift-options strong {
+  background: rgba(10, 8, 6, .52) !important;
+  border-color: rgba(202, 154, 79, .38) !important;
+  color: #e6bc75 !important;
+}
+
+.tao-diy-entry .tao-gift-options b {
+  color: #f7e8c9 !important;
+}
+
+.tao-diy-entry .tao-gift-options span,
+.tao-diy-entry .tao-gift-next-row span,
+.tao-diy-entry .tao-gift-result p:not(.eyebrow) {
+  color: rgba(245, 232, 207, .72) !important;
+}
+
+.tao-diy-entry .tao-gift-options i {
+  background: rgba(255, 246, 224, .08) !important;
+  border-color: rgba(239, 218, 174, .22) !important;
+}
+
+.tao-diy-entry .tao-gift-next-row,
+.tao-diy-entry .tao-gift-result-actions {
+  border-top-color: rgba(202, 154, 79, .24) !important;
+}
+
+/* Refined questionnaire typography. */
+.tao-diy-entry .tao-gift-form > .eyebrow,
+.tao-diy-entry .tao-gift-result > .eyebrow {
+  margin-bottom: 26px !important;
+  font-size: 10px !important;
+  letter-spacing: .24em !important;
+}
+
+.tao-diy-entry .tao-gift-form h3,
+.tao-diy-entry .tao-gift-result h3 {
+  margin: 28px 0 18px !important;
+  max-width: 760px !important;
+  font-family: "Noto Serif SC", "Libre Baskerville", Georgia, serif !important;
+  font-size: clamp(34px, 3.1vw, 52px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -.035em !important;
+  font-weight: 500 !important;
+}
+
+.tao-diy-entry .tao-gift-form h3:first-of-type {
+  margin-top: 0 !important;
+}
+
+.tao-diy-entry .tao-gift-options {
+  gap: 14px 20px !important;
+  margin-bottom: 26px !important;
+}
+
+.tao-diy-entry .tao-gift-options button {
+  grid-template-columns: 58px 1fr 30px !important;
+  min-height: 88px !important;
+  padding: 15px 22px 15px 16px !important;
+  border-radius: 12px !important;
+}
+
+.tao-diy-entry .tao-gift-options strong {
+  width: 46px !important;
+  height: 46px !important;
+  font-size: 22px !important;
+}
+
+.tao-diy-entry .tao-gift-options b {
+  font-size: 18px !important;
+  letter-spacing: 0 !important;
+}
+
+.tao-diy-entry .tao-gift-options span {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
+
+.tao-diy-entry .tao-gift-options i {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.tao-diy-entry .tao-gift-options button.active i::before {
+  font-size: 17px !important;
+}
+
+.tao-diy-entry .tao-gift-style {
+  gap: 12px !important;
+  margin-bottom: 26px !important;
+}
+
+.tao-diy-entry .tao-gift-style button {
+  min-width: 128px !important;
+  height: 46px !important;
+  font-size: 13px !important;
+}
+
+.tao-diy-entry-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(180deg, rgba(250, 243, 225, 0.86), rgba(235, 216, 179, 0.78)),
+    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/taoist-altar-detail-bg.png");
+  background-size: cover;
+  background-position: center;
+  filter: sepia(0.18) brightness(1.28) saturate(0.62);
+  opacity: 0.42;
+}
+
+.tao-diy-entry::before {
+  content: "";
+  position: absolute;
+  inset: 9%;
+  z-index: -1;
+  border: 1px solid rgba(117, 82, 39, 0.08);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 253, 246, 0.68), transparent 34%),
+    repeating-linear-gradient(90deg, rgba(98, 67, 30, 0.035) 0 1px, transparent 1px 8px);
+  box-shadow: inset 0 0 80px rgba(148, 104, 46, 0.08);
+}
+
+.tao-diy-entry-copy {
+  width: min(980px, 100%);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.tao-diy-entry-copy .eyebrow {
+  color: rgba(139, 90, 36, 0.82);
+}
+
+.tao-diy-entry-copy h2 {
+  max-width: 960px;
+  margin: 28px auto 22px;
+  color: #21170f;
+  font-size: clamp(58px, 8.6vw, 128px);
+  line-height: 0.92;
+  letter-spacing: -0.075em;
+}
+
+.tao-diy-entry-copy p:not(.eyebrow) {
+  max-width: 650px;
+  margin: 0 auto;
+  color: rgba(39, 28, 18, 0.62);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.tao-diy-entry-summary {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 30px auto 24px;
+}
+
+.tao-diy-entry-materials {
+  width: min(1080px, 100%);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin: 34px auto 20px;
+}
+
+.tao-diy-entry-materials article {
+  min-height: 108px;
+  border: 1px solid rgba(117, 82, 39, 0.12);
+  border-radius: 18px;
+  padding: 14px 13px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.82), transparent 54%),
+    rgba(255, 252, 242, 0.5);
+  box-shadow: 0 14px 30px rgba(117, 82, 39, 0.055);
+  text-align: left;
+}
+
+.tao-diy-entry-materials b {
+  display: block;
+  color: #25180f;
+  font: 600 18px/1.1 "KaiTi", "STKaiti", serif;
+}
+
+.tao-diy-entry-materials span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(139, 90, 36, 0.76);
+  font: 8px "DM Mono", monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tao-diy-entry-materials p {
+  margin: 12px 0 0;
+  color: rgba(39, 28, 18, 0.6);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.tao-diy-entry-summary span {
+  border: 1px solid rgba(117, 82, 39, 0.13);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(255, 252, 242, 0.5);
+  color: rgba(49, 34, 20, 0.64);
+  font-size: 12px;
+  line-height: 1;
+  box-shadow: 0 10px 24px rgba(117, 82, 39, 0.06);
+}
+
+.tao-diy-entry-copy .gold-button {
+  min-width: 230px;
+  justify-content: space-between;
+  border-color: rgba(139, 90, 36, 0.34);
+  background: #24180f;
+  color: #fff7e8;
+}
+
+.tao-gift-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.tao-gift-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(39, 28, 18, 0.34);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+}
+
+.tao-gift-panel {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 96vw);
+  max-height: min(820px, 92vh);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.86fr);
+  gap: 0;
+  overflow: auto;
+  border: 1px solid rgba(139, 90, 36, 0.2);
+  border-radius: 30px;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 247, 0.98), rgba(250, 240, 220, 0.96)),
+    #fff8e9;
+  box-shadow: 0 42px 120px rgba(58, 38, 18, 0.32);
+}
+
+.tao-gift-panel.is-result-step {
+  width: min(760px, 96vw);
+  grid-template-columns: 1fr;
+}
+
+.tao-gift-close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 2;
+  border: 1px solid rgba(117, 82, 39, 0.18);
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: rgba(255, 253, 246, 0.78);
+  color: #24180f;
+  font: 10px "DM Mono", monospace;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.tao-gift-form,
+.tao-gift-result {
+  padding: clamp(28px, 4vw, 54px);
+}
+
+.tao-gift-form {
+  border-right: 1px solid rgba(117, 82, 39, 0.12);
+}
+
+.tao-gift-panel:not(.is-result-step) .tao-gift-form {
+  grid-column: 1 / -1;
+  border-right: 0;
+}
+
+.tao-gift-form h3,
+.tao-gift-result h3 {
+  margin: 24px 0 14px;
+  color: #21170f;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.tao-gift-form h3 {
+  font-size: clamp(24px, 2.4vw, 34px);
+}
+
+.tao-gift-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tao-gift-options.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tao-gift-options button,
+.tao-gift-style button {
+  border: 1px solid rgba(117, 82, 39, 0.13);
+  border-radius: 17px;
+  padding: 14px;
+  background: rgba(255, 252, 243, 0.68);
+  color: #2d2117;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.tao-gift-options button:hover,
+.tao-gift-style button:hover {
+  transform: translateY(-1px);
+}
+
+.tao-gift-options button.active,
+.tao-gift-style button.active {
+  border-color: rgba(139, 90, 36, 0.52);
+  background: rgba(255, 246, 222, 0.95);
+  box-shadow: 0 12px 30px rgba(139, 90, 36, 0.1);
+}
+
+.tao-gift-options b {
+  display: block;
+  font-size: 15px;
+}
+
+.tao-gift-options span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(39, 28, 18, 0.56);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.tao-gift-style {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tao-gift-style button {
+  border-radius: 999px;
+  padding: 11px 15px;
+  font-size: 12px;
+}
+
+.tao-gift-result {
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.75), transparent 42%),
+    linear-gradient(180deg, rgba(246, 226, 188, 0.42), rgba(255, 251, 241, 0.86));
+}
+
+.tao-gift-result h3 {
+  margin-top: 28px;
+  color: #8b2f20;
+  font-size: clamp(34px, 3.2vw, 50px);
+  line-height: 1.04;
+}
+
+.tao-gift-for {
+  margin: 0 0 18px;
+  color: rgba(39, 28, 18, 0.58);
+  font: 11px "DM Mono", monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tao-gift-material-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0 0 22px;
+}
+
+.tao-gift-material-list span {
+  border: 1px solid rgba(139, 90, 36, 0.18);
+  border-radius: 999px;
+  padding: 8px 11px;
+  background: rgba(255, 253, 246, 0.66);
+  color: #6e431b;
+  font-size: 12px;
+}
+
+.tao-gift-result p:not(.eyebrow):not(.tao-gift-for) {
+  color: rgba(39, 28, 18, 0.72);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.tao-gift-result small {
+  display: block;
+  margin-top: 14px;
+  border-top: 1px solid rgba(117, 82, 39, 0.14);
+  padding-top: 14px;
+  color: rgba(39, 28, 18, 0.56);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.tao-gift-result .gold-button {
+  width: min(270px, 100%);
+  margin-top: auto;
+}
+
+.tao-gift-next-row,
+.tao-gift-result-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 28px;
+  border-top: 1px solid rgba(117, 82, 39, 0.14);
+  padding-top: 22px;
+}
+
+.tao-gift-next-row span {
+  max-width: 360px;
+  color: rgba(39, 28, 18, 0.56);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.tao-gift-next-row .gold-button,
+.tao-gift-result-actions .gold-button {
+  width: min(280px, 100%);
+  margin-top: 0;
+}
+
+.tao-gift-secondary {
+  border: 1px solid rgba(117, 82, 39, 0.18);
+  border-radius: 999px;
+  padding: 14px 18px;
+  background: rgba(255, 252, 243, 0.7);
+  color: #24180f;
+  cursor: pointer;
+  font: 11px "DM Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tao-diy-loading-screen {
+  min-height: 78vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.75), transparent 35%),
+    #efe1c2;
+  color: #241b13;
+}
+
+.tao-diy-loading-screen p {
+  font: 10px "DM Mono", monospace;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.tao-diy-loading-screen span {
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9c6a31, transparent);
+  animation: tao-entry-loading 1.2s ease-in-out infinite;
+}
+
+@keyframes tao-entry-loading {
+  0%,
+  100% {
+    transform: scaleX(0.4);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Premium gift-designer redesign */
+.tao-diy-entry {
+  --premium-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --glow-x: 50%;
+  --glow-y: 30%;
+  min-height: 112vh;
+  padding: clamp(96px, 9vw, 138px) clamp(24px, 5.4vw, 86px);
+  background:
+    radial-gradient(560px circle at var(--glow-x) var(--glow-y), rgba(188, 137, 58, 0.18), transparent 62%),
+    linear-gradient(90deg, rgba(118, 87, 46, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 72% 18%, rgba(255, 255, 255, 0.85), transparent 30%),
+    linear-gradient(180deg, #fffaf0 0%, #f4e7ce 100%);
+  background-size: auto, 9px 100%, auto, auto;
+}
+
+.tao-diy-entry::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 46%;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(236, 222, 194, 0.5) 100%),
+    radial-gradient(ellipse at 16% 84%, rgba(82, 93, 78, 0.16), transparent 34%),
+    radial-gradient(ellipse at 64% 82%, rgba(121, 91, 50, 0.12), transparent 36%);
+  opacity: 0.75;
+  filter: blur(0.2px);
+  pointer-events: none;
+}
+
+.tao-diy-entry-bg {
+  background-image:
+    linear-gradient(180deg, rgba(255, 250, 238, 0.82), rgba(245, 230, 200, 0.7)),
+    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/taoist-altar-detail-bg.png");
+  filter: sepia(0.08) brightness(1.74) saturate(0.22);
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+}
+
+.tao-diy-entry::before {
+  inset: 5.8%;
+  border-color: rgba(117, 82, 39, 0.07);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 253, 246, 0.58), transparent 30%),
+    repeating-linear-gradient(90deg, rgba(98, 67, 30, 0.025) 0 1px, transparent 1px 10px);
+}
+
+.tao-diy-entry-copy {
+  width: min(1180px, 100%);
+  text-align: left;
+  justify-items: stretch;
+}
+
+.tao-diy-entry-copy .eyebrow {
+  animation: tao-premium-fade 0.9s var(--premium-ease) both;
+}
+
+.tao-diy-entry-copy h2 {
+  max-width: 900px;
+  margin: 24px 0 20px;
+  font-size: clamp(58px, 7.4vw, 122px);
+}
+
+.tao-diy-entry-copy h2 span {
+  display: block;
+  animation: tao-headline-reveal 1.05s var(--premium-ease) both;
+  filter: blur(0);
+}
+
+.tao-diy-entry-copy h2 span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.tao-diy-entry-copy > p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 0;
+  animation: tao-premium-fade 1s var(--premium-ease) 0.2s both;
+}
+
+.tao-intention-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.tao-intention-grid button,
+.tao-material-card-row article {
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+  border: 1px solid rgba(103, 72, 34, 0.13);
+  border-radius: 24px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.64), transparent 36%),
+    rgba(255, 251, 241, 0.58);
+  color: #24180f;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 18px 48px rgba(105, 75, 38, 0.07);
+  transform: translateY(0);
+  transition:
+    transform 0.7s var(--premium-ease),
+    border-color 0.7s var(--premium-ease),
+    background 0.7s var(--premium-ease),
+    box-shadow 0.7s var(--premium-ease);
+  animation: tao-card-rise 0.9s var(--premium-ease) both;
+}
+
+.tao-intention-grid button:nth-child(2) { animation-delay: 0.08s; }
+.tao-intention-grid button:nth-child(3) { animation-delay: 0.16s; }
+.tao-intention-grid button:nth-child(4) { animation-delay: 0.24s; }
+
+.tao-intention-grid button::before,
+.tao-material-card-row article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(188, 137, 58, 0.16), transparent 28%),
+    repeating-linear-gradient(135deg, rgba(99, 70, 35, 0.03) 0 1px, transparent 1px 7px);
+  transition: opacity 0.7s var(--premium-ease);
+}
+
+.tao-intention-grid small,
+.tao-material-card-row small {
+  position: relative;
+  color: rgba(128, 89, 40, 0.74);
+  font: 10px "DM Mono", monospace;
+  letter-spacing: 0.18em;
+}
+
+.tao-intention-grid b,
+.tao-material-card-row b {
+  position: relative;
+  display: block;
+  margin-top: 42px;
+  color: #21170f;
+  font: 400 28px/1.05 "Libre Baskerville", Georgia, serif;
+  letter-spacing: -0.045em;
+}
+
+.tao-intention-grid span,
+.tao-material-card-row span {
+  position: relative;
+  display: block;
+  margin-top: 12px;
+  color: #8b2f20;
+  font: 10px "DM Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tao-intention-grid p,
+.tao-material-card-row p {
+  position: relative;
+  max-width: 250px;
+  margin: 20px 0 0;
+  color: rgba(39, 28, 18, 0.58);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.tao-intention-grid i {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  opacity: 0;
+  color: rgba(139, 90, 36, 0.78);
+  font: 9px "DM Mono", monospace;
+  font-style: normal;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tao-intention-grid em,
+.tao-material-card-row em {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  opacity: 0;
+  color: #8b2f20;
+  font-style: normal;
+  transform: translateX(-8px);
+  transition: opacity 0.55s var(--premium-ease), transform 0.55s var(--premium-ease);
+}
+
+.tao-intention-grid button:hover,
+.tao-intention-grid button.active,
+.tao-material-card-row article:hover {
+  border-color: rgba(170, 126, 62, 0.52);
+  background: rgba(255, 246, 226, 0.8);
+  box-shadow: 0 24px 66px rgba(105, 75, 38, 0.12);
+  transform: translateY(-4px);
+}
+
+.tao-intention-grid button:hover::before,
+.tao-intention-grid button.active::before,
+.tao-material-card-row article:hover::before {
+  opacity: 1;
+}
+
+.tao-intention-grid button.active i,
+.tao-intention-grid button:hover em,
+.tao-material-card-row article:hover em {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tao-recommendation-strip {
+  display: grid;
+  grid-template-columns: 0.32fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+  border-top: 1px solid rgba(117, 82, 39, 0.11);
+  padding-top: 26px;
+  animation: tao-premium-fade 0.85s var(--premium-ease) 0.12s both;
+}
+
+.tao-recommendation-strip h3 {
+  margin: 10px 0 0;
+  color: #24180f;
+  font: 400 clamp(24px, 2.6vw, 40px)/1.08 "Libre Baskerville", Georgia, serif;
+  letter-spacing: -0.05em;
+}
+
+.tao-material-card-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tao-material-card-row article {
+  min-height: 182px;
+  padding: 18px;
+  cursor: default;
+}
+
+.tao-material-card-row b {
+  margin-top: 30px;
+  font-family: "KaiTi", "STKaiti", serif;
+  font-size: 25px;
+}
+
+.texture-wood::before,
+.texture-sandal::before { background: radial-gradient(circle at 80% 18%, rgba(141, 84, 38, 0.18), transparent 30%), repeating-linear-gradient(90deg, rgba(119, 71, 32, 0.05) 0 2px, transparent 2px 11px); }
+.texture-jade::before,
+.texture-green::before { background: radial-gradient(circle at 82% 18%, rgba(117, 158, 129, 0.2), transparent 32%), repeating-linear-gradient(135deg, rgba(85, 128, 99, 0.035) 0 1px, transparent 1px 8px); }
+.texture-obsidian::before { background: radial-gradient(circle at 82% 18%, rgba(20, 18, 14, 0.14), transparent 32%), repeating-linear-gradient(135deg, rgba(20, 18, 14, 0.04) 0 1px, transparent 1px 8px); }
+.texture-cinnabar::before { background: radial-gradient(circle at 82% 18%, rgba(139, 47, 32, 0.18), transparent 32%), repeating-linear-gradient(135deg, rgba(139, 47, 32, 0.035) 0 1px, transparent 1px 8px); }
+.texture-citrine::before,
+.texture-gold::before { background: radial-gradient(circle at 82% 18%, rgba(199, 151, 62, 0.24), transparent 32%), repeating-linear-gradient(135deg, rgba(199, 151, 62, 0.04) 0 1px, transparent 1px 8px); }
+.texture-lapis::before { background: radial-gradient(circle at 82% 18%, rgba(41, 71, 128, 0.2), transparent 32%), repeating-linear-gradient(135deg, rgba(41, 71, 128, 0.035) 0 1px, transparent 1px 8px); }
+.texture-lacquer::before,
+.texture-cloisonne::before { background: radial-gradient(circle at 82% 18%, rgba(48, 80, 99, 0.16), transparent 32%), repeating-linear-gradient(135deg, rgba(155, 107, 45, 0.04) 0 1px, transparent 1px 8px); }
+
+.tao-diy-entry-summary {
+  justify-content: flex-start;
+  margin: 24px 0 26px;
+}
+
+.tao-diy-entry-copy .gold-button {
+  min-width: 270px;
+  transition: border-color 0.55s var(--premium-ease), background 0.55s var(--premium-ease), transform 0.55s var(--premium-ease);
+}
+
+.tao-diy-entry-copy .gold-button span {
+  transition: transform 0.55s var(--premium-ease);
+}
+
+.tao-diy-entry-copy .gold-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(173, 145, 101, 0.72);
+  background: #17110c;
+}
+
+.tao-diy-entry-copy .gold-button:hover span {
+  transform: translateX(6px);
+}
+
+@keyframes tao-premium-fade {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tao-headline-reveal {
+  from { opacity: 0; transform: translateY(28px); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes tao-card-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Motion enhancement: restrained luxury movement */
+.tao-diy-entry-bg {
+  animation: tao-mist-drift 18s var(--premium-ease) infinite alternate;
+  transform-origin: center;
+}
+
+.tao-diy-entry::after {
+  animation: tao-silhouette-drift 22s ease-in-out infinite alternate;
+}
+
+.tao-intention-grid button,
+.tao-material-card-row article {
+  isolation: isolate;
+  transform-style: preserve-3d;
+}
+
+.tao-intention-grid button::after,
+.tao-material-card-row article::after {
+  content: "";
+  position: absolute;
+  inset: -35% -70%;
+  z-index: 0;
+  opacity: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 248, 224, 0.52) 48%, rgba(184, 136, 62, 0.18) 51%, transparent 62%);
+  transform: translateX(-32%) rotate(6deg);
+  transition: opacity 0.55s var(--premium-ease), transform 1.15s var(--premium-ease);
+  pointer-events: none;
+}
+
+.tao-intention-grid button:hover::after,
+.tao-material-card-row article:hover::after {
+  opacity: 1;
+  transform: translateX(34%) rotate(6deg);
+}
+
+.tao-intention-grid button.active {
+  animation:
+    tao-card-rise 0.9s var(--premium-ease) both,
+    tao-selected-breath 4.8s ease-in-out infinite;
+}
+
+.tao-intention-grid button.active::before {
+  animation: tao-texture-breathe 5.8s ease-in-out infinite;
+}
+
+.tao-material-card-row article::before {
+  background-size: 160% 160%, 12px 12px;
+}
+
+.tao-material-card-row article:hover::before {
+  animation: tao-texture-slide 5.5s linear infinite;
+}
+
+.tao-intention-grid button:hover small,
+.tao-material-card-row article:hover small {
+  color: rgba(139, 90, 36, 0.98);
+}
+
+.tao-intention-grid button:hover b,
+.tao-material-card-row article:hover b {
+  transform: translateY(-2px);
+}
+
+.tao-intention-grid b,
+.tao-material-card-row b,
+.tao-intention-grid p,
+.tao-material-card-row p,
+.tao-intention-grid span,
+.tao-material-card-row span,
+.tao-intention-grid small,
+.tao-material-card-row small {
+  z-index: 1;
+  transition:
+    transform 0.75s var(--premium-ease),
+    color 0.75s var(--premium-ease),
+    opacity 0.75s var(--premium-ease);
+}
+
+.tao-recommendation-strip {
+  position: relative;
+}
+
+.tao-recommendation-strip::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 160px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(170, 126, 62, 0.68), transparent);
+  animation: tao-rule-drift 4.8s ease-in-out infinite;
+}
+
+.tao-material-card-row article {
+  animation: tao-material-rise 0.8s var(--premium-ease) both;
+}
+
+.tao-material-card-row article:nth-child(2) { animation-delay: 0.06s; }
+.tao-material-card-row article:nth-child(3) { animation-delay: 0.12s; }
+.tao-material-card-row article:nth-child(4) { animation-delay: 0.18s; }
+
+.tao-diy-entry-summary span {
+  transition: border-color 0.65s var(--premium-ease), background 0.65s var(--premium-ease), transform 0.65s var(--premium-ease);
+}
+
+.tao-diy-entry-summary span:hover {
+  border-color: rgba(170, 126, 62, 0.38);
+  background: rgba(255, 248, 230, 0.72);
+  transform: translateY(-2px);
+}
+
+@keyframes tao-mist-drift {
+  from { opacity: 0.12; transform: scale(1.01) translate3d(-10px, 0, 0); }
+  to { opacity: 0.2; transform: scale(1.04) translate3d(12px, -8px, 0); }
+}
+
+@keyframes tao-silhouette-drift {
+  from { transform: translate3d(-18px, 8px, 0); opacity: 0.48; }
+  to { transform: translate3d(22px, -6px, 0); opacity: 0.78; }
+}
+
+@keyframes tao-selected-breath {
+  0%, 100% {
+    box-shadow: 0 24px 66px rgba(105, 75, 38, 0.12), inset 0 0 0 rgba(190, 144, 70, 0);
+  }
+  50% {
+    box-shadow: 0 30px 78px rgba(105, 75, 38, 0.17), inset 0 0 36px rgba(190, 144, 70, 0.08);
+  }
+}
+
+@keyframes tao-texture-breathe {
+  0%, 100% { opacity: 0.72; background-position: 0% 0%, 0 0; }
+  50% { opacity: 1; background-position: 100% 20%, 8px 8px; }
+}
+
+@keyframes tao-texture-slide {
+  from { background-position: 0% 0%, 0 0; }
+  to { background-position: 120% 20%, 24px 24px; }
+}
+
+@keyframes tao-rule-drift {
+  0%, 100% { transform: translateX(0); opacity: 0.35; }
+  50% { transform: translateX(88px); opacity: 0.82; }
+}
+
+@keyframes tao-material-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tao-diy-entry-bg,
+  .tao-diy-entry::after,
+  .tao-intention-grid button.active,
+  .tao-intention-grid button.active::before,
+  .tao-material-card-row article:hover::before,
+  .tao-recommendation-strip::before {
+    animation: none;
+  }
+}
+
+/* Alternative motion system: quiet linework, layered depth, no obvious shine */
+.tao-intention-grid button::after,
+.tao-material-card-row article::after {
+  opacity: 0;
+  background: none;
+  transform: none;
+  transition: none;
+}
+
+.tao-intention-grid button:hover::after,
+.tao-material-card-row article:hover::after {
+  opacity: 0;
+  transform: none;
+}
+
+.tao-intention-grid button.active,
+.tao-intention-grid button.active::before,
+.tao-material-card-row article:hover::before,
+.tao-recommendation-strip::before,
+.tao-material-card-row article {
+  animation: none;
+}
+
+.tao-intention-grid button,
+.tao-material-card-row article {
+  transition:
+    transform 0.9s var(--premium-ease),
+    border-color 0.9s var(--premium-ease),
+    background 0.9s var(--premium-ease),
+    box-shadow 0.9s var(--premium-ease);
+}
+
+.tao-intention-grid button::before,
+.tao-material-card-row article::before {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.9s var(--premium-ease), transform 0.9s var(--premium-ease);
+}
+
+.tao-intention-grid button:hover::before,
+.tao-intention-grid button.active::before,
+.tao-material-card-row article:hover::before {
+  opacity: 0.82;
+  transform: translateY(0);
+}
+
+.tao-intention-grid button > small::after,
+.tao-material-card-row article > small::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  margin-top: 14px;
+  background: linear-gradient(90deg, rgba(151, 108, 51, 0.75), transparent);
+  transition: width 0.9s var(--premium-ease);
+}
+
+.tao-intention-grid button:hover > small::after,
+.tao-intention-grid button.active > small::after,
+.tao-material-card-row article:hover > small::after {
+  width: 74px;
+}
+
+.tao-intention-grid button:hover,
+.tao-intention-grid button.active,
+.tao-material-card-row article:hover {
+  transform: translate3d(0, -6px, 0);
+  box-shadow:
+    0 22px 58px rgba(93, 65, 30, 0.13),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.tao-intention-grid button.active {
+  background:
+    radial-gradient(circle at 78% 12%, rgba(190, 144, 70, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(255, 249, 234, 0.92), rgba(246, 229, 194, 0.74));
+}
+
+.tao-intention-grid button.active i {
+  opacity: 1;
+}
+
+.tao-intention-grid button.active i::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(139, 90, 36, 0.62);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.tao-intention-grid button:hover b,
+.tao-material-card-row article:hover b {
+  transform: translateY(-4px);
+}
+
+.tao-intention-grid button:hover p,
+.tao-material-card-row article:hover p {
+  transform: translateY(-2px);
+  color: rgba(39, 28, 18, 0.7);
+}
+
+.tao-intention-grid button:hover em,
+.tao-material-card-row article:hover em {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tao-recommendation-strip::before {
+  width: 100%;
+  background: linear-gradient(90deg, rgba(151, 108, 51, 0.54), transparent 34%);
+  opacity: 0.65;
+  transform: none;
+}
+
+.tao-material-card-row article {
+  transform: translateY(0);
+}
+
+.tao-material-card-row article:nth-child(1) { transition-delay: 0s; }
+.tao-material-card-row article:nth-child(2) { transition-delay: 0.03s; }
+.tao-material-card-row article:nth-child(3) { transition-delay: 0.06s; }
+.tao-material-card-row article:nth-child(4) { transition-delay: 0.09s; }
+
+@media (max-width: 900px) {
+  .tao-diy-entry {
+    min-height: 760px;
+    padding: 90px 24px;
+  }
+
+  .tao-diy-entry::before {
+    inset: 18px;
+  }
+
+  .tao-diy-entry-copy h2 {
+    font-size: 56px;
+  }
+
+  .tao-diy-entry-materials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tao-gift-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .tao-gift-form {
+    border-right: 0;
+    border-bottom: 1px solid rgba(117, 82, 39, 0.12);
+  }
+
+  .tao-gift-options,
+  .tao-gift-options.compact {
+    grid-template-columns: 1fr;
+  }
+
+  .tao-gift-next-row,
+  .tao-gift-result-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tao-gift-next-row .gold-button,
+  .tao-gift-result-actions .gold-button,
+  .tao-gift-secondary {
+    width: 100%;
+  }
+
+  .tao-diy-entry-copy {
+    text-align: left;
+  }
+
+  .tao-intention-grid,
+  .tao-material-card-row,
+  .tao-recommendation-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .tao-intention-grid button,
+  .tao-material-card-row article {
+    min-height: 170px;
+  }
+}
+
+/* Dark editorial version: simpler, high-fashion, less decorative */
+.tao-diy-entry {
+  --premium-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 104vh;
+  padding: clamp(92px, 8vw, 132px) clamp(24px, 6vw, 104px);
+  background:
+    radial-gradient(620px circle at var(--glow-x) var(--glow-y), rgba(173, 145, 101, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(22, 19, 15, 0.9), rgba(7, 7, 6, 0.98)),
+    #0b0a08;
+  color: #f4ecdc;
+}
+
+.tao-diy-entry-bg {
+  background-image:
+    linear-gradient(90deg, rgba(7, 7, 6, 0.94), rgba(7, 7, 6, 0.72) 46%, rgba(7, 7, 6, 0.94)),
+    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/taoist-altar-detail-bg.png");
+  filter: grayscale(0.75) brightness(0.56) contrast(1.08);
+  opacity: 0.34;
+  mix-blend-mode: normal;
+}
+
+.tao-diy-entry-video {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.34;
+  filter: saturate(0.78) contrast(1.04) brightness(0.62);
+  pointer-events: none;
+}
+
+.tao-diy-entry-bg {
+  z-index: -2;
+  opacity: 0.5;
+}
+
+.tao-diy-entry::before {
+  inset: 34px;
+  border-color: rgba(219, 190, 139, 0.09);
+  border-radius: 28px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(circle at 50% 45%, rgba(173, 145, 101, 0.05), transparent 34%);
+  background-size: 16px 100%, auto;
+  box-shadow: none;
+}
+
+.tao-diy-entry::after {
+  height: 42%;
+  background:
+    radial-gradient(ellipse at 18% 86%, rgba(173, 145, 101, 0.08), transparent 38%),
+    radial-gradient(ellipse at 78% 82%, rgba(255, 255, 255, 0.05), transparent 32%);
+  opacity: 0.72;
+  animation: none;
+}
+
+.tao-diy-entry-copy {
+  width: min(1120px, 100%);
+}
+
+.tao-diy-entry-copy .eyebrow {
+  color: rgba(219, 190, 139, 0.78);
+}
+
+.tao-diy-entry-copy h2 {
+  max-width: 820px;
+  color: #fff8ea;
+  font-size: clamp(58px, 7vw, 116px);
+  letter-spacing: -0.08em;
+}
+
+.tao-diy-entry-copy > p:not(.eyebrow) {
+  max-width: 660px;
+  color: rgba(244, 236, 220, 0.62);
+}
+
+.tao-intention-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 54px;
+  border: 1px solid rgba(219, 190, 139, 0.11);
+  background: rgba(219, 190, 139, 0.1);
+}
+
+.tao-intention-grid button,
+.tao-material-card-row article {
+  min-height: 220px;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
+    rgba(13, 12, 10, 0.72);
+  box-shadow: none;
+  color: #f4ecdc;
+}
+
+.tao-intention-grid button::before,
+.tao-material-card-row article::before {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(173, 145, 101, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent);
+}
+
+.tao-intention-grid small,
+.tao-material-card-row small {
+  color: rgba(219, 190, 139, 0.64);
+}
+
+.tao-intention-grid b,
+.tao-material-card-row b {
+  color: #fff8ea;
+}
+
+.tao-intention-grid span,
+.tao-material-card-row span {
+  color: rgba(219, 190, 139, 0.76);
+}
+
+.tao-intention-grid p,
+.tao-material-card-row p {
+  color: rgba(244, 236, 220, 0.54);
+}
+
+.tao-intention-grid button:hover,
+.tao-intention-grid button.active,
+.tao-material-card-row article:hover {
+  background:
+    radial-gradient(circle at 80% 18%, rgba(173, 145, 101, 0.12), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.026)),
+    rgba(18, 16, 13, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(219, 190, 139, 0.22);
+  transform: translate3d(0, -3px, 0);
+}
+
+.tao-intention-grid button.active {
+  background:
+    radial-gradient(circle at 80% 18%, rgba(173, 145, 101, 0.16), transparent 36%),
+    linear-gradient(180deg, rgba(42, 35, 25, 0.96), rgba(18, 16, 13, 0.96));
+}
+
+.tao-intention-grid i {
+  color: rgba(219, 190, 139, 0.82);
+}
+
+.tao-intention-grid em,
+.tao-material-card-row em {
+  color: rgba(219, 190, 139, 0.86);
+}
+
+.tao-recommendation-strip {
+  grid-template-columns: 0.28fr 1fr;
+  gap: 22px;
+  margin-top: 34px;
+  border-top-color: rgba(219, 190, 139, 0.12);
+}
+
+.tao-recommendation-strip::before {
+  background: linear-gradient(90deg, rgba(219, 190, 139, 0.62), transparent 28%);
+}
+
+.tao-recommendation-strip h3 {
+  color: #fff8ea;
+}
+
+.tao-material-card-row {
+  gap: 1px;
+  border: 1px solid rgba(219, 190, 139, 0.1);
+  background: rgba(219, 190, 139, 0.1);
+}
+
+.tao-material-card-row article {
+  min-height: 172px;
+  padding: 18px;
+}
+
+.tao-material-card-row b {
+  color: #fff8ea;
+  font-size: 24px;
+}
+
+.tao-diy-entry-summary {
+  display: none;
+}
+
+.tao-diy-entry-copy .gold-button {
+  min-width: 270px;
+  margin-top: 30px;
+  border-color: rgba(219, 190, 139, 0.22);
+  background: #f7efe0;
+  color: #11100d;
+}
+
+.tao-diy-entry-copy .gold-button:hover {
+  background: #ffffff;
+  border-color: rgba(219, 190, 139, 0.58);
+}
+
+.tao-diy-entry-bg,
+.tao-diy-entry::after {
+  animation: none;
+}
+
+@media (max-width: 900px) {
+  .tao-intention-grid,
+  .tao-material-card-row,
+  .tao-recommendation-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .tao-diy-entry-video {
+    opacity: 0.24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tao-diy-entry-video {
+    display: none;
+  }
+}
+
+.tao-diy-entry-copy {
+  grid-template-areas:
+    "kicker spacer"
+    "title spacer"
+    "copy spacer"
+    "adline spacer"
+    "cta spacer"
+    "cards cards"
+    "note note" !important;
+}
+
+.tao-diy-entry-copy > p:not(.eyebrow):not(.tao-diy-adline) {
+  grid-area: copy !important;
+}
+
+.tao-diy-entry-copy > .tao-diy-adline {
+  grid-area: adline !important;
+  max-width: 620px !important;
+  margin: 24px 0 0 !important;
+  padding-left: 18px !important;
+  border-left: 1px solid rgba(214, 181, 120, 0.42) !important;
+  color: rgba(241, 224, 192, 0.86) !important;
+  font-size: 14px !important;
+  line-height: 1.78 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.tao-diy-entry-copy > .tao-diy-adline span {
+  display: block;
+  margin-top: 10px;
+  color: rgba(214, 181, 120, 0.72);
+  font-size: 12px;
+  line-height: 1.72;
+}
+
+@media (max-width: 1100px) {
+  .tao-diy-entry-copy {
+    grid-template-areas:
+      "kicker"
+      "title"
+      "copy"
+      "adline"
+      "cta"
+      "cards"
+      "note" !important;
+  }
+}
+
+/* Collection-style DIY entry override */
+.tao-diy-collection-entry {
+  --collection-gold: #c99748;
+  --collection-gold-soft: rgba(201, 151, 72, 0.42);
+  --collection-ink: #0b0906;
+  --collection-panel: rgba(20, 17, 12, 0.82);
+  min-height: 100vh;
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at var(--glow-x, 52%) var(--glow-y, 44%), rgba(184, 117, 45, 0.2), transparent 26%),
+    linear-gradient(90deg, #070604 0%, #11100c 42%, #070604 100%);
+  color: #efe1c3;
+}
+
+.tao-diy-collection-entry .tao-diy-entry-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(4, 4, 3, 0.96), rgba(6, 5, 4, 0.78) 42%, rgba(6, 5, 4, 0.88)),
+    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/diy-program-bg.png") center / cover no-repeat;
+  opacity: 0.72;
+  filter: saturate(0.88) contrast(1.08) brightness(0.72);
+}
+
+.tao-diy-collection-entry::before {
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, rgba(201, 151, 72, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(201, 151, 72, 0.055) 1px, transparent 1px),
+    radial-gradient(ellipse at 8% 86%, rgba(201, 151, 72, 0.11), transparent 34%),
+    radial-gradient(ellipse at 84% 16%, rgba(255, 221, 156, 0.08), transparent 31%);
+  background-size: 92px 100%, 100% 92px, auto, auto;
+  pointer-events: none;
+}
+
+.tao-diy-collection-entry::after {
+  display: none;
+}
+
+.tao-collection-layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 70px);
+  width: min(1540px, calc(100vw - 64px));
+  height: 100vh;
+  margin: 0 auto;
+  padding: clamp(82px, 8vh, 108px) 0 28px;
+}
+
+.tao-collection-sidebar {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: 24px;
+  min-height: 0;
+  padding: 14px 0 18px;
+  border-right: 1px solid rgba(201, 151, 72, 0.18);
+}
+
+.tao-collection-brand span,
+.tao-collection-filter p {
+  display: block;
+  margin: 0 0 12px;
+  color: rgba(201, 151, 72, 0.86);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.tao-collection-brand h2 {
+  max-width: 190px;
+  margin: 0 0 22px;
+  color: #f4dfb4;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 31px;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.tao-collection-brand h2::after {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 1px;
+  margin-top: 18px;
+  background: var(--collection-gold);
+}
+
+.tao-collection-brand p {
+  max-width: 178px;
+  margin: 0;
+  color: rgba(239, 225, 195, 0.66);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.tao-collection-filter {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.tao-collection-filter button {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  grid-template-areas:
+    "icon cn"
+    "icon en";
+  align-items: center;
+  min-height: 54px;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(239, 225, 195, 0.72);
+  text-align: left;
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), border-color 360ms cubic-bezier(0.16, 1, 0.3, 1), background 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tao-collection-filter button:hover,
+.tao-collection-filter button.active {
+  border-color: rgba(201, 151, 72, 0.22);
+  background: rgba(239, 225, 195, 0.075);
+  transform: translate3d(4px, 0, 0);
+}
+
+.tao-collection-filter i {
+  grid-area: icon;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(201, 151, 72, 0.42);
+  border-radius: 999px;
+  color: rgba(201, 151, 72, 0.92);
+  font-style: normal;
+  font-size: 13px;
+}
+
+.tao-collection-filter.material i {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.22);
+}
+
+.tao-collection-filter span {
+  grid-area: cn;
+  color: #f1dfbf;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.tao-collection-filter small {
+  grid-area: en;
+  color: rgba(239, 225, 195, 0.46);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.tao-collection-service {
+  align-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 0 18px;
+  border: 1px solid rgba(201, 151, 72, 0.48);
+  border-radius: 8px;
+  background: rgba(12, 10, 7, 0.58);
+  color: #f1dfbf;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.tao-collection-service span {
+  color: var(--collection-gold);
+  font-size: 22px;
+}
+
+.tao-collection-main {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 22px;
+  padding-bottom: 4px;
+}
+
+.tao-collection-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 36px;
+  align-items: end;
+  padding-right: 10px;
+}
+
+.tao-collection-header h3 {
+  margin: 0 0 6px;
+  color: #f6ddb0;
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  font-size: clamp(52px, 5.6vw, 90px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 32px rgba(201, 151, 72, 0.16);
+}
+
+.tao-collection-header p {
+  margin: 0 0 18px;
+  color: rgba(239, 225, 195, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+}
+
+.tao-collection-header p::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin-top: 22px;
+  background: var(--collection-gold);
+}
+
+.tao-collection-header span {
+  color: rgba(239, 225, 195, 0.64);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.tao-collection-stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 28px;
+  padding-bottom: 12px;
+}
+
+.tao-collection-stats span {
+  min-width: 86px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(201, 151, 72, 0.18);
+  color: #f1dfbf;
+  text-align: center;
+}
+
+.tao-collection-stats span:first-child {
+  border-left: 0;
+}
+
+.tao-collection-stats b,
+.tao-collection-stats small {
+  display: block;
+}
+
+.tao-collection-stats b {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tao-collection-stats small {
+  margin-top: 5px;
+  color: rgba(239, 225, 195, 0.58);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.tao-collection-scroll {
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding: 2px 12px 6px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 151, 72, 0.46) rgba(255, 255, 255, 0.04);
+}
+
+.tao-collection-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.tao-collection-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tao-collection-scroll::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(201, 151, 72, 0.46);
+}
+
+.tao-collection-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  padding-bottom: 10px;
+}
+
+.tao-collection-card {
+  overflow: hidden;
+  border: 1px solid rgba(201, 151, 72, 0.24);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(18, 15, 10, 0.46), rgba(10, 8, 6, 0.9)),
+    rgba(12, 10, 7, 0.82);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.22);
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), border-color 420ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tao-collection-card:hover {
+  transform: translate3d(0, -5px, 0);
+  border-color: rgba(201, 151, 72, 0.58);
+  box-shadow: 0 26px 54px rgba(0, 0, 0, 0.34);
+}
+
+.tao-collection-image {
+  position: relative;
+  aspect-ratio: 1.6 / 1;
+  overflow: hidden;
+  background: #17120d;
+}
+
+.tao-collection-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, 0.28));
+  pointer-events: none;
+}
+
+.tao-collection-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 720ms cubic-bezier(0.16, 1, 0.3, 1);
+  filter: saturate(0.96) contrast(1.02);
+}
+
+.tao-collection-card:hover .tao-collection-image img {
+  transform: scale(1.07);
+  filter: saturate(1.08) contrast(1.06);
+}
+
+.tao-collection-card-copy {
+  padding: 18px 20px 20px;
+}
+
+.tao-collection-card-copy small {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--collection-gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.tao-collection-card-copy h4 {
+  margin: 0 0 8px;
+  color: #f5dfb5;
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+.tao-collection-card-copy p {
+  min-height: 44px;
+  margin: 0 0 14px;
+  color: rgba(239, 225, 195, 0.64);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tao-collection-card-copy span {
+  color: var(--collection-gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.tao-collection-note {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  min-height: 58px;
+  padding: 12px 16px 12px 18px;
+  border: 1px solid rgba(201, 151, 72, 0.22);
+  border-radius: 10px;
+  background: rgba(9, 8, 6, 0.68);
+  color: rgba(239, 225, 195, 0.7);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+.tao-collection-note .gold-button {
+  min-width: 230px;
+  margin: 0;
+  border-color: rgba(201, 151, 72, 0.56);
+  background: linear-gradient(90deg, #d9b772, #f4dfb2);
+  color: #15100a;
+}
+
+@media (max-width: 1180px) {
+  .tao-collection-layout {
+    grid-template-columns: 190px minmax(0, 1fr);
+    width: min(100vw - 28px, 1100px);
+    gap: 20px;
+  }
+
+  .tao-collection-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tao-collection-stats {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .tao-diy-collection-entry {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .tao-collection-layout {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    padding: 86px 0 20px;
+  }
+
+  .tao-collection-sidebar {
+    display: none;
+  }
+
+  .tao-collection-header {
+    grid-template-columns: 1fr;
+  }
+
+  .tao-collection-header h3 {
+    font-size: 54px;
+  }
+
+  .tao-collection-scroll {
+    height: 58vh;
+  }
+
+  .tao-collection-product-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .tao-collection-note {
+    grid-template-columns: 1fr;
+  }
+
+  .tao-collection-note .gold-button {
+    width: 100%;
+  }
+}
+
+.tao-diy-mobile-brand,
+.tao-diy-mobile-hero,
+.tao-diy-mobile-extra {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  body.tao-diy-mobile-entry-active .dao-header {
+    display: none !important;
+  }
+
+  .tao-diy-entry {
+    display: block !important;
+    min-height: 100svh !important;
+    padding: 34px 22px 64px !important;
+    overflow: hidden !important;
+    background: #050403 url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/mobile-intention-bg.png") top center / cover no-repeat !important;
+    color: #f2dfbd !important;
+    box-shadow: inset 0 90px 110px rgba(0, 0, 0, 0.18), inset 0 -140px 160px rgba(0, 0, 0, 0.55) !important;
+  }
+
+  .tao-diy-entry-bg,
+  .tao-diy-entry::before,
+  .tao-diy-entry::after,
+  .tao-diy-entry-copy::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .tao-diy-entry-copy {
+    position: relative !important;
+    z-index: 2 !important;
+    display: flex !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    text-align: left !important;
+  }
+
+  .tao-diy-entry-copy > .eyebrow,
+  .tao-diy-entry-copy > h2,
+  .tao-diy-entry-copy > p:not(.eyebrow),
+  .tao-diy-entry-copy > .gold-button {
+    display: none !important;
+  }
+
+  .tao-diy-mobile-brand {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 18px !important;
+    margin-bottom: 78px !important;
+  }
+
+  .tao-diy-mobile-logo {
+    display: grid !important;
+    gap: 12px !important;
+    color: #f4ddb5 !important;
+  }
+
+  .tao-diy-mobile-logo strong {
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(34px, 11.8vw, 52px) !important;
+    font-weight: 400 !important;
+    line-height: 0.95 !important;
+    letter-spacing: 0.36em !important;
+  }
+
+  .tao-diy-mobile-logo span {
+    color: rgba(220, 175, 93, 0.88) !important;
+    font-family: "DM Mono", monospace !important;
+    font-size: 12px !important;
+    letter-spacing: 0.42em !important;
+  }
+
+  .tao-diy-mobile-menu {
+    display: inline-flex !important;
+    min-width: 118px !important;
+    height: 50px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    border: 1px solid rgba(217, 172, 93, 0.62) !important;
+    border-radius: 999px !important;
+    background: rgba(10, 8, 5, 0.24) !important;
+    color: #dfb66f !important;
+    font-family: "DM Mono", monospace !important;
+    font-size: 13px !important;
+    letter-spacing: 0.28em !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 236, 180, 0.04), 0 18px 42px rgba(0, 0, 0, 0.28) !important;
+    appearance: none !important;
+    cursor: pointer !important;
+  }
+
+  .tao-diy-mobile-menu b {
+    color: #f4dfb2 !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .tao-diy-mobile-hero {
+    display: block !important;
+  }
+
+  .tao-diy-mobile-hero h2 {
+    max-width: 8.4em !important;
+    margin: 0 !important;
+    color: #f1dfbd !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(64px, 19vw, 94px) !important;
+    font-weight: 400 !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.06em !important;
+    text-shadow: 0 18px 60px rgba(0, 0, 0, 0.72) !important;
+  }
+
+  .tao-diy-mobile-hero h2::after {
+    content: "" !important;
+    display: block !important;
+    width: 52px !important;
+    height: 1px !important;
+    margin: 34px 0 24px !important;
+    background: linear-gradient(90deg, #ddb16a, rgba(221, 177, 106, 0)) !important;
+  }
+
+  .tao-diy-mobile-hero p {
+    max-width: 320px !important;
+    margin: 0 !important;
+    color: rgba(243, 224, 196, 0.82) !important;
+    font-size: 19px !important;
+    line-height: 1.86 !important;
+    letter-spacing: 0.01em !important;
+    text-shadow: 0 12px 36px rgba(0, 0, 0, 0.72) !important;
+  }
+
+  .tao-diy-mobile-start {
+    display: flex !important;
+    width: min(100%, 344px) !important;
+    min-height: 64px !important;
+    margin: 34px 0 46px !important;
+    padding: 0 28px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border: 1px solid rgba(245, 220, 168, 0.36) !important;
+    border-radius: 7px !important;
+    background: linear-gradient(135deg, rgba(248, 223, 176, 0.98), rgba(193, 142, 62, 0.86)) !important;
+    color: #191208 !important;
+    font-family: "DM Mono", monospace !important;
+    font-size: 17px !important;
+    letter-spacing: 0.09em !important;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.38) !important;
+  }
+
+  .tao-diy-mobile-start span {
+    font-size: 26px !important;
+    line-height: 1 !important;
+  }
+
+  .tao-intention-grid {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .tao-intention-grid button {
+    position: relative !important;
+    display: grid !important;
+    width: 100% !important;
+    min-height: 118px !important;
+    grid-template-columns: 86px minmax(0, 1fr) !important;
+    align-items: center !important;
+    column-gap: 18px !important;
+    padding: 16px 20px 16px 18px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(205, 151, 65, 0.48) !important;
+    border-radius: 12px !important;
+    background: linear-gradient(105deg, rgba(31, 24, 16, 0.76), rgba(8, 7, 5, 0.62)) !important;
+    color: #f0dcba !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 233, 180, 0.04), 0 18px 52px rgba(0, 0, 0, 0.34) !important;
+    backdrop-filter: blur(10px) !important;
+    transform: none !important;
+  }
+
+  .tao-intention-grid button.active {
+    border-color: rgba(240, 184, 87, 0.94) !important;
+    background: radial-gradient(circle at 9% 45%, rgba(185, 121, 32, 0.2), transparent 24%), linear-gradient(105deg, rgba(37, 29, 18, 0.88), rgba(12, 10, 7, 0.72)) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 231, 166, 0.16), 0 0 22px rgba(212, 156, 69, 0.16), 0 22px 60px rgba(0, 0, 0, 0.46) !important;
+  }
+
+  .tao-intention-grid button::before {
+    content: "" !important;
+    position: static !important;
+    display: block !important;
+    width: 70px !important;
+    height: 70px !important;
+    grid-row: 1 / span 3 !important;
+    grid-column: 1 !important;
+    margin: 0 auto !important;
+    border: 1px solid rgba(202, 151, 72, 0.44) !important;
+    border-radius: 50% !important;
+    background-color: rgba(8, 6, 3, 0.18) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 78% !important;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.3)) !important;
+    opacity: 0.9 !important;
+  }
+
+  .tao-intention-grid button:nth-child(1)::before {
+    background-image: url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/mobile-intention-icon-family.png") !important;
+  }
+
+  .tao-intention-grid button:nth-child(2)::before {
+    background-image: url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/mobile-intention-icon-partner.png") !important;
+  }
+
+  .tao-intention-grid button:nth-child(3)::before {
+    background-image: url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/mobile-intention-icon-friend.png") !important;
+  }
+
+  .tao-intention-grid button:nth-child(4)::before {
+    background-image: url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/mobile-intention-icon-self.png") !important;
+  }
+
+  .tao-intention-grid small,
+  .tao-intention-grid p,
+  .tao-intention-grid em {
+    display: none !important;
+  }
+
+  .tao-intention-grid b {
+    display: block !important;
+    grid-column: 2 !important;
+    margin: 0 !important;
+    color: #f0dcba !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: clamp(25px, 8vw, 34px) !important;
+    font-weight: 400 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    text-align: left !important;
+  }
+
+  .tao-intention-grid b::after {
+    content: "" !important;
+    display: block !important;
+    width: 38px !important;
+    height: 1px !important;
+    margin: 11px 0 0 !important;
+    background: rgba(223, 176, 100, 0.7) !important;
+  }
+
+  .tao-intention-grid span {
+    display: block !important;
+    grid-column: 2 !important;
+    margin: 12px 0 0 !important;
+    max-width: none !important;
+    color: rgba(224, 177, 105, 0.88) !important;
+    font-family: "DM Mono", monospace !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    letter-spacing: 0.2em !important;
+    text-align: left !important;
+    text-transform: uppercase !important;
+  }
+
+  .tao-intention-grid i {
+    position: absolute !important;
+    top: 17px !important;
+    right: 18px !important;
+    display: none !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: #dcae62 !important;
+    font-family: "DM Mono", monospace !important;
+    font-size: 10px !important;
+    font-style: normal !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+  }
+
+  .tao-intention-grid button.active i {
+    display: inline-flex !important;
+  }
+
+  .tao-intention-grid i::before {
+    content: "" !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: #e7b260 !important;
+    box-shadow: 0 0 18px rgba(231, 178, 96, 0.62) !important;
+  }
+
+  .tao-diy-mobile-brand {
+    margin-bottom: 38px !important;
+  }
+
+  .tao-diy-mobile-logo {
+    gap: 7px !important;
+  }
+
+  .tao-diy-mobile-logo strong {
+    font-size: clamp(24px, 7.2vw, 30px) !important;
+    letter-spacing: 0.3em !important;
+  }
+
+  .tao-diy-mobile-logo span {
+    font-size: 9px !important;
+    letter-spacing: 0.34em !important;
+  }
+
+  .tao-diy-mobile-menu {
+    min-width: 88px !important;
+    height: 38px !important;
+    gap: 9px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.22em !important;
+  }
+
+  .tao-diy-mobile-menu b {
+    font-size: 14px !important;
+  }
+
+  .tao-diy-mobile-hero h2 {
+    max-width: 8.7em !important;
+    font-size: clamp(34px, 10.5vw, 46px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .tao-diy-mobile-hero h2::after {
+    width: 34px !important;
+    margin: 22px 0 16px !important;
+  }
+
+  .tao-diy-mobile-hero p {
+    max-width: 285px !important;
+    font-size: 13px !important;
+    line-height: 1.72 !important;
+  }
+
+  .tao-diy-mobile-start {
+    width: min(100%, 290px) !important;
+    min-height: 46px !important;
+    margin: 22px 0 30px !important;
+    padding: 0 20px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .tao-diy-mobile-start span {
+    font-size: 18px !important;
+  }
+
+  .tao-intention-grid {
+    gap: 10px !important;
+  }
+
+  .tao-intention-grid button {
+    min-height: 76px !important;
+    grid-template-columns: 50px minmax(0, 1fr) !important;
+    column-gap: 12px !important;
+    padding: 10px 14px 10px 12px !important;
+    border-radius: 9px !important;
+  }
+
+  .tao-intention-grid button::before {
+    width: 42px !important;
+    height: 42px !important;
+    background-size: 74% !important;
+  }
+
+  .tao-intention-grid b {
+    font-size: clamp(16px, 4.8vw, 20px) !important;
+    line-height: 1.08 !important;
+  }
+
+  .tao-intention-grid b::after {
+    width: 24px !important;
+    margin-top: 7px !important;
+  }
+
+  .tao-intention-grid span {
+    margin-top: 7px !important;
+    font-size: 8px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  .tao-intention-grid i {
+    top: 10px !important;
+    right: 12px !important;
+    gap: 5px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  .tao-intention-grid i::before {
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  .tao-diy-mobile-extra {
+    display: grid !important;
+    margin: 16px 0 0 !important;
+    gap: 10px !important;
+  }
+
+  .tao-diy-mobile-extra-head {
+    display: grid !important;
+    gap: 5px !important;
+    padding: 13px 14px !important;
+    border: 1px solid rgba(205, 151, 65, 0.36) !important;
+    border-radius: 9px !important;
+    background: linear-gradient(120deg, rgba(22, 17, 11, 0.8), rgba(7, 6, 4, 0.58)) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 233, 180, 0.04), 0 16px 44px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  .tao-diy-mobile-extra-head span,
+  .tao-diy-mobile-extra-grid small,
+  .tao-diy-mobile-extra-note span {
+    color: rgba(223, 176, 100, 0.86) !important;
+    font-family: "DM Mono", monospace !important;
+    font-size: 8px !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+  }
+
+  .tao-diy-mobile-extra-head b {
+    color: #f0dcba !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+  }
+
+  .tao-diy-mobile-extra-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .tao-diy-mobile-extra-grid article {
+    min-height: 108px !important;
+    padding: 11px 10px !important;
+    border: 1px solid rgba(205, 151, 65, 0.3) !important;
+    border-radius: 9px !important;
+    background: rgba(8, 7, 5, 0.55) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 233, 180, 0.035) !important;
+  }
+
+  .tao-diy-mobile-extra-grid strong {
+    display: block !important;
+    margin: 10px 0 6px !important;
+    color: #f0dcba !important;
+    font-family: "Libre Baskerville", Georgia, serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.15 !important;
+  }
+
+  .tao-diy-mobile-extra-grid p {
+    margin: 0 !important;
+    color: rgba(243, 224, 196, 0.68) !important;
+    font-size: 9px !important;
+    line-height: 1.48 !important;
+  }
+
+  .tao-diy-mobile-extra-note {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(205, 151, 65, 0.34) !important;
+    border-radius: 9px !important;
+    background: radial-gradient(circle at 12% 50%, rgba(183, 118, 30, 0.18), transparent 30%), rgba(8, 7, 5, 0.5) !important;
+  }
+
+  .tao-diy-mobile-extra-note span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    line-height: 1.35 !important;
+    text-transform: none !important;
+  }
+
+  .tao-diy-mobile-extra-note span::after {
+    content: "" !important;
+    width: 5px !important;
+    height: 5px !important;
+    border-radius: 50% !important;
+    background: rgba(231, 178, 96, 0.9) !important;
+    box-shadow: 0 0 14px rgba(231, 178, 96, 0.48) !important;
+  }
+}
