@@ -138,7 +138,7 @@ export const galleryConfig: GalleryConfig = {
 
 ## Required Images
 
-All images go in `public/images/` and must be referenced from `galleryConfig.images` with paths like `/images/<filename>.jpg`.
+Upload all images to the `yuenora-assets` R2 bucket under `images/`. Reference them from `galleryConfig.images` with paths like `/images/<filename>.jpg`; `VITE_R2_PUBLIC_URL` supplies the public bucket base URL.
 
 **Recommended specs:**
 - Orientation: **4:5 portrait** works best (the vortex cells are 4:5). Landscape and square work but letterbox inside cells.
@@ -151,7 +151,7 @@ All images go in `public/images/` and must be referenced from `galleryConfig.ima
 When generating images for this template, the builder should:
 1. Write 20–60 photography-style image prompts matching the user's query (tone, palette, subject).
 2. Call `generate_image` for each one (opaque → `.jpg`).
-3. Save each output into `public/images/` with a descriptive filename, e.g. `portrait_01.jpg`, `street_07.jpg`.
+3. Upload each output to `yuenora-assets/images/` with a descriptive filename, e.g. `portrait_01.jpg`, `street_07.jpg`.
 4. For each generated image, write a matching entry in `galleryConfig.images` with the final `src` path, the `category`, a `title`, and a short `description`. Keep captions in the same voice as the rest of the site.
 
 ## Design

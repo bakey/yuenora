@@ -23,9 +23,10 @@ A single-page photography / portfolio site built around a swirling cylindrical v
 1. Clone this repository
 2. Install dependencies: `npm install`
 3. Edit `src/config.ts` with your content
-4. Add images to `public/images/`
-5. Run dev server: `npm run dev`
-6. Build for production: `npm run build`
+4. Optionally copy `.env.example` to `.env` when overriding the built-in R2 or API defaults
+5. Upload images to the `yuenora-assets` R2 bucket under `images/`
+6. Run dev server: `npm run dev`
+7. Build for production: `npm run build`
 
 ## Configuration
 
@@ -106,7 +107,7 @@ export const galleryConfig: GalleryConfig = {
 
 ## Required Images
 
-Put images in `public/images/`. The vortex fills a cylindrical field with 600 instances pulling randomly from your image list, so roughly 20-60 images produces a full-looking vortex. Fewer images means more repetition in the background but the page still works with as few as 1.
+Upload images to the `yuenora-assets` R2 bucket under `images/`, then reference them with paths such as `/images/<filename>.jpg`. `VITE_R2_PUBLIC_URL` supplies the bucket's public base URL. The vortex fills a cylindrical field with 600 instances pulling randomly from your image list, so roughly 20-60 images produces a full-looking vortex. Fewer images means more repetition in the background but the page still works with as few as 1.
 
 Recommended specs:
 - 4:5 portrait orientation works best for the cylinder cells (256×320 atlas cell)
