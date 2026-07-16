@@ -12,12 +12,12 @@
 .tao-mobile-diy{
   background:
     linear-gradient(180deg, rgba(66, 23, 12, 0.18), rgba(242, 223, 184, 0.62) 38%, rgba(239, 215, 176, 0.72)),
-    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/diy-designer-bg.png") center/cover no-repeat!important;
+    url("https://pub-faa918d87407467fabebe0ae4bcbb26b.r2.dev/assets/tao-diy/diy-designer-bg.png") center/cover no-repeat!important;
 }
 .tao-phone-shell{
   background:
     linear-gradient(180deg, rgba(255, 250, 238, 0.78), rgba(239, 220, 184, 0.7)),
-    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/diy-designer-bg.png") center/cover no-repeat!important;
+    url("https://pub-faa918d87407467fabebe0ae4bcbb26b.r2.dev/assets/tao-diy/diy-designer-bg.png") center/cover no-repeat!important;
   backdrop-filter: blur(1px) saturate(0.96)!important;
 }
 .tao-phone-shell::before{
@@ -49,7 +49,7 @@
   inset: 0;
   pointer-events: none;
   opacity: 0.16;
-  background-image: url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/taoist-altar-detail-bg.png");
+  background-image: url("https://pub-faa918d87407467fabebe0ae4bcbb26b.r2.dev/assets/tao-diy/taoist-altar-detail-bg.png");
   background-size: cover;
   background-position: center top;
   filter: sepia(0.2) brightness(1.35) saturate(0.55);
@@ -143,7 +143,7 @@
   background:
     radial-gradient(circle at 50% 48%, rgba(255, 240, 198, 0.74), rgba(207, 166, 101, 0.34) 33%, rgba(47, 25, 16, 0.38) 76%),
     linear-gradient(180deg, rgba(255, 248, 230, 0.22), rgba(176, 113, 58, 0.18)),
-    url("https://pub-364a76a828f94fbeb2b09c625907dcf5.r2.dev/assets/tao-diy/diy-designer-bg.png") center/cover no-repeat;
+    url("https://pub-faa918d87407467fabebe0ae4bcbb26b.r2.dev/assets/tao-diy/diy-designer-bg.png") center/cover no-repeat;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.36),
     inset 0 -80px 160px rgba(72, 42, 18, 0.2),

@@ -8,7 +8,7 @@
 
 - `npm.cmd run build` completed successfully after the theme and motion implementation.
 - The implementation uses `GSAP + ScrollTrigger` for hero parallax, reveal timing, pinned horizontal collection scrolling, and section reveal choreography; `Lenis` drives smooth wheel scrolling.
-- Original generated project media: `public/assets/placeholder/temple-ritual.png` and `public/assets/placeholder/bracelet-mist.png`.
+- Original generated project media now lives in the `yuenora-assets` R2 bucket at `assets/placeholder/temple-ritual.png` and `assets/placeholder/bracelet-mist.png`.
 - A rendered implementation capture is not available in this execution session, so visual comparison against the active local-browser tab is not completed.
 
 **Findings**

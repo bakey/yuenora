@@ -1,14 +1,18 @@
+const DEFAULT_R2_PUBLIC_URL =
+  "https://pub-faa918d87407467fabebe0ae4bcbb26b.r2.dev";
+
 export function assetUrl(path: string): string {
   if (/^https?:\/\//.test(path)) return path;
-  const base = import.meta.env.VITE_R2_PUBLIC_URL ?? "";
-  return `${base}${path}`;
+  const configuredBase = import.meta.env.VITE_R2_PUBLIC_URL?.trim();
+  const base = (configuredBase || DEFAULT_R2_PUBLIC_URL).replace(/\/+$/, "");
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${normalizedPath}`;
 }
 
 /**
- * 3D 模型资源使用同域相对路径，避免 R2 跨域问题。
- * 生产环境通过 Caddy 反向代理到 R2 公开桶。
+ * 3D 模型与其他静态资源使用同一个公开 R2 bucket。
+ * Bucket CORS 允许浏览器和 Three.js 跨域流式读取模型。
  */
 export function modelAssetUrl(path: string): string {
-  if (/^https?:\/\//.test(path)) return path;
-  return path;
+  return assetUrl(path);
 }
