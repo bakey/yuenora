@@ -1,7 +1,11 @@
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import Lenis from "lenis";
+import { Elements } from "@stripe/react-stripe-js";
+import type { Stripe } from "@stripe/stripe-js";
 import BrandMark from "../components/BrandMark";
-import { createOrder, type OrderPayload } from "../lib/orderApi";
+import { StripePaymentForm } from "../components/StripePaymentForm";
+import { createPaymentIntent, type OrderPayload } from "../lib/orderApi";
+import { getStripe } from "../lib/stripe";
 import { taoProductCatalog, type TaoCatalogGroup, type TaoCatalogItem, type TaoCatalogParent } from "../data/taoProductCatalog";
 import { localizeProductCopy, localizeProductName, useI18n } from "../i18n";
 
@@ -21,7 +25,6 @@ function formatUsd(value: number) {
 
 const blessingServiceFee = 500;
 const mobileProductBatchSize = 10;
-const orderEmail = "orders@taoblessingjewelry.com";
 
 type OrderRecord = {
   id: string;
@@ -44,29 +47,6 @@ type OrderRecord = {
 
 function formValueToString(value: FormDataEntryValue | null) {
   return typeof value === "string" ? value : "";
-}
-
-function buildOrderMailto(order: OrderRecord) {
-  const subject = `缘灵 Order ${order.id} - ${order.productName}`;
-  const body = [
-    `Order ID: ${order.id}`,
-    `Product: ${order.productName}`,
-    `Type: ${order.productType}`,
-    `Unit price: ${order.price}`,
-    `Quantity: ${order.quantity}`,
-    `Blessing service: ${order.blessingService ? `Yes (${formatUsd(order.serviceFee)})` : "No"}`,
-    `Total: ${order.total === null ? "Confirm with service" : formatUsd(order.total)}`,
-    "",
-    `Recipient name: ${formValueToString(order.customerName)}`,
-    `Phone: ${formValueToString(order.phone)}`,
-    `WeChat / WhatsApp: ${formValueToString(order.wechat)}`,
-    `Address: ${formValueToString(order.address)}`,
-    `Notes: ${formValueToString(order.note)}`,
-    "",
-    "Please confirm payment, delivery details, and blessing-service schedule.",
-  ].join("\n");
-
-  return `mailto:${orderEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function getProductOnlyImages(item: TaoCatalogItem) {
@@ -722,7 +702,11 @@ export default function TaoPhotoWallSection() {
   const [activeProduct, setActiveProduct] = useState<TaoCatalogItem | null>(null);
   const [activeDetailImage, setActiveDetailImage] = useState<string>("");
   const [orderOpen, setOrderOpen] = useState(false);
-  const [orderSubmitted, setOrderSubmitted] = useState<{ id: string; productName: string; mailtoUrl: string } | null>(null);
+  const [paymentStep, setPaymentStep] = useState<"form" | "payment" | "success">("form");
+  const [paymentClientSecret, setPaymentClientSecret] = useState<string | null>(null);
+  const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
+  const [submittedOrderId, setSubmittedOrderId] = useState<string | null>(null);
+  const [submittedProductName, setSubmittedProductName] = useState<string>("");
   const [orderSubmitting, setOrderSubmitting] = useState(false);
   const [orderError, setOrderError] = useState<string | null>(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
@@ -763,11 +747,19 @@ export default function TaoPhotoWallSection() {
   const orderSubtotal = activeProductPrice === null ? null : activeProductPrice * orderQuantity;
   const orderTotal = orderSubtotal === null ? null : orderSubtotal + (blessingServiceSelected ? blessingServiceFee : 0);
 
+  const resetPaymentState = () => {
+    setPaymentStep("form");
+    setPaymentClientSecret(null);
+    setStripePromise(null);
+    setSubmittedOrderId(null);
+    setSubmittedProductName("");
+  };
+
   const openProduct = (item: TaoCatalogItem) => {
     setActiveProduct(item);
     setActiveDetailImage(getProductOnlyImage(item));
     setOrderOpen(false);
-    setOrderSubmitted(null);
+    resetPaymentState();
     setOrderQuantity(1);
     setBlessingServiceSelected(false);
     setBlessingServiceNoticeOpen(false);
@@ -776,7 +768,7 @@ export default function TaoPhotoWallSection() {
   const closeProduct = () => {
     setActiveProduct(null);
     setOrderOpen(false);
-    setOrderSubmitted(null);
+    resetPaymentState();
     setOrderError(null);
     setOrderQuantity(1);
     setBlessingServiceSelected(false);
@@ -785,7 +777,7 @@ export default function TaoPhotoWallSection() {
 
   const openOrder = () => {
     setOrderOpen(true);
-    setOrderSubmitted(null);
+    resetPaymentState();
     setOrderError(null);
     setOrderQuantity(1);
     setBlessingServiceSelected(false);
@@ -804,7 +796,7 @@ export default function TaoPhotoWallSection() {
       setActiveProduct(detail.item);
       setActiveDetailImage(getProductOnlyImage(detail.item));
       setOrderOpen(detail.openCheckout ?? true);
-      setOrderSubmitted(null);
+      resetPaymentState();
       setOrderError(null);
       setOrderQuantity(1);
       setBlessingServiceSelected(false);
@@ -868,24 +860,37 @@ export default function TaoPhotoWallSection() {
         customer_phone: formValueToString(form.get("phone")) || undefined,
         shipping_address: formValueToString(form.get("address")) || undefined,
         notes: [formValueToString(form.get("wechat")), formValueToString(form.get("note"))].filter(Boolean).join("; ") || undefined,
-        status: "pending",
+        status: "pending_payment",
       };
 
-      const savedOrder = await createOrder(payload);
+      const { client_secret, order_id } = await createPaymentIntent(payload);
 
       const storedOrders = JSON.parse(window.localStorage.getItem("taoOrders") || "[]") as unknown[];
       window.localStorage.setItem("taoOrders", JSON.stringify([order, ...storedOrders].slice(0, 80)));
 
-      const mailtoUrl = buildOrderMailto(order);
-      setOrderSubmitted({ id: savedOrder.order_id, productName, mailtoUrl });
+      let stripe: Promise<Stripe | null>;
+      try {
+        stripe = getStripe();
+      } catch (stripeError) {
+        setOrderError(stripeError instanceof Error ? stripeError.message : "Stripe is not configured");
+        setOrderSubmitting(false);
+        return;
+      }
 
-      const mailWindow = window.open(mailtoUrl, "_blank", "noopener,noreferrer");
-      if (!mailWindow) window.location.href = mailtoUrl;
+      setPaymentClientSecret(client_secret);
+      setSubmittedOrderId(order_id);
+      setSubmittedProductName(productName);
+      setStripePromise(stripe);
+      setPaymentStep("payment");
     } catch (error) {
       setOrderError(error instanceof Error ? error.message : t("order.submitError", "Order submission failed. Please try again."));
     } finally {
       setOrderSubmitting(false);
     }
+  };
+
+  const handlePaymentSuccess = () => {
+    setPaymentStep("success");
   };
 
   function getLocalizedType(item: TaoCatalogItem, parent?: string) {
@@ -1066,15 +1071,35 @@ export default function TaoPhotoWallSection() {
               </header>
               <section className="product-order-panel">
                 <button className="product-order-close" onClick={() => setOrderOpen(false)} type="button">{t("nav.close")}</button>
-                {orderSubmitted ? (
+                {paymentStep === "success" ? (
                   <div className="product-order-success">
-                    <p className="eyebrow">{t("order.created")}</p>
-                    <h3>{t("order.ready")}</h3>
-                    <p>Order ID: <b>{orderSubmitted.id}</b></p>
-                    <p>{orderSubmitted.productName} {t("order.saved")}</p>
-                    <p className="product-order-success-note">{t("order.backendSaved", "We have received your order.")}</p>
-                    <a className="product-order-button" href={orderSubmitted.mailtoUrl}>{t("order.sendEmail")} <span>→</span></a>
+                    <p className="eyebrow">{t("payment.success", "Payment Successful")}</p>
+                    <h3>{t("payment.thankYou", "Thank you for your order")}</h3>
+                    <p>Order ID: <b>{submittedOrderId}</b></p>
+                    <p>{submittedProductName} {t("order.saved")}</p>
+                    <p className="product-order-success-note">{t("payment.successNote", "We have received your payment and will prepare your blessing piece shortly.")}</p>
                     <button className="product-order-button" onClick={() => setOrderOpen(false)} type="button">{t("order.done")} <span>→</span></button>
+                  </div>
+                ) : paymentStep === "payment" && stripePromise ? (
+                  <div className="product-order-form">
+                    <div className="product-order-heading"><p className="eyebrow">{t("payment.title", "Secure Payment")}</p><h3>{getLocalizedName(activeProduct)}</h3><span>{formatPrice(activeProduct)} · {t("order.total")} {orderTotal === null ? t("order.ask") : formatUsd(orderTotal)}</span></div>
+                    <aside className="product-order-summary">
+                      <p className="eyebrow">{t("order.summary")}</p>
+                      <div className="product-order-summary-item"><img src={activeDetailImage || getProductOnlyImage(activeProduct)} alt={getLocalizedName(activeProduct)} /><div><h4>{getLocalizedName(activeProduct)}</h4><span>{getLocalizedType(activeProduct, activeGroup?.parent)}</span><b>{formatPrice(activeProduct)}</b></div></div>
+                      <dl>
+                        <div><dt>{t("order.quantity")}</dt><dd>{orderQuantity} {orderQuantity > 1 ? t("order.pieces") : t("order.piece")}</dd></div>
+                        <div><dt>{t("order.service")}</dt><dd>{blessingServiceSelected ? `${t("order.selected")} · ${formatUsd(blessingServiceFee)}` : t("order.notSelected")}</dd></div>
+                        <div><dt>{t("order.total")}</dt><dd>{orderTotal === null ? t("order.ask") : formatUsd(orderTotal)}</dd></div>
+                      </dl>
+                    </aside>
+                    {orderError && <div className="product-order-error">{orderError}</div>}
+                    <Elements stripe={stripePromise}>
+                      <StripePaymentForm
+                        clientSecret={paymentClientSecret ?? ""}
+                        onSuccess={handlePaymentSuccess}
+                        onError={setOrderError}
+                      />
+                    </Elements>
                   </div>
                 ) : (
                   <form className="product-order-form" onSubmit={submitOrder}>
@@ -1101,7 +1126,7 @@ export default function TaoPhotoWallSection() {
                     </div>
                     <label className="product-order-check"><input name="blessingService" type="checkbox" checked={blessingServiceSelected} onChange={(event) => updateBlessingService(event.target.checked)} /><span>{t("order.addService")}</span></label>
                     {orderError && <div className="product-order-error">{orderError}</div>}
-                    <div className="product-order-footer"><p>{t("order.submitHint")}</p><button className="product-order-button" type="submit" disabled={orderSubmitting}>{orderSubmitting ? t("order.submitting", "Submitting...") : t("order.submit")} <span>→</span></button></div>
+                    <div className="product-order-footer"><p>{t("order.submitHint")}</p><button className="product-order-button" type="submit" disabled={orderSubmitting}>{orderSubmitting ? t("order.submitting", "Submitting...") : t("payment.continue", "Continue to Payment")} <span>→</span></button></div>
                     {blessingServiceNoticeOpen && (
                       <div className="blessing-service-confirm-modal" role="dialog" aria-modal="true" aria-label={t("service.modal.kicker")}>
                         <button className="blessing-service-confirm-backdrop" onClick={() => setBlessingServiceNoticeOpen(false)} type="button" />
