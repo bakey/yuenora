@@ -22,7 +22,11 @@ export interface OrderResponse extends OrderPayload {
   updated_at: string;
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+if (!API_BASE) {
+  throw new Error("VITE_API_BASE_URL is not set");
+}
 
 export async function createOrder(payload: OrderPayload): Promise<OrderResponse> {
   const response = await fetch(`${API_BASE}/orders`, {
