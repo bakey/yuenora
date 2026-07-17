@@ -3073,6 +3073,27 @@ body.modal-scroll-locked .dao-header{pointer-events:none!important}
   color:#f3dfb8;
   letter-spacing:.08em;
 }
+.product-order-success-summary{
+  display:grid;
+  gap:8px;
+  padding:16px;
+  border:1px solid rgba(196,145,73,.25);
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+}
+.product-order-success-summary div{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+}
+.product-order-success-summary span{
+  color:rgba(239,225,197,.62);
+}
+.product-order-success-summary b{
+  color:#f3dfb8;
+  letter-spacing:.08em;
+}
 .product-catalog-section:has(.product-detail-modal){
   overflow:visible!important;
   z-index:9998!important;

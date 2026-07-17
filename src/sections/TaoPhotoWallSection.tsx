@@ -707,6 +707,8 @@ export default function TaoPhotoWallSection() {
   const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
   const [submittedOrderId, setSubmittedOrderId] = useState<string | null>(null);
   const [submittedProductName, setSubmittedProductName] = useState<string>("");
+  const [submittedTotal, setSubmittedTotal] = useState<number | null>(null);
+  const [submittedBlessingService, setSubmittedBlessingService] = useState(false);
   const [orderSubmitting, setOrderSubmitting] = useState(false);
   const [orderError, setOrderError] = useState<string | null>(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
@@ -753,6 +755,8 @@ export default function TaoPhotoWallSection() {
     setStripePromise(null);
     setSubmittedOrderId(null);
     setSubmittedProductName("");
+    setSubmittedTotal(null);
+    setSubmittedBlessingService(false);
   };
 
   const openProduct = (item: TaoCatalogItem) => {
@@ -880,6 +884,8 @@ export default function TaoPhotoWallSection() {
       setPaymentClientSecret(client_secret);
       setSubmittedOrderId(order_id);
       setSubmittedProductName(productName);
+      setSubmittedTotal(total);
+      setSubmittedBlessingService(blessingServiceSelected);
       setStripePromise(stripe);
       setPaymentStep("payment");
     } catch (error) {
@@ -1077,6 +1083,10 @@ export default function TaoPhotoWallSection() {
                     <h3>{t("payment.thankYou", "Thank you for your order")}</h3>
                     <p>Order ID: <b>{submittedOrderId}</b></p>
                     <p>{submittedProductName} {t("order.saved")}</p>
+                    <div className="product-order-success-summary">
+                      <div><span>{t("order.total")}</span><b>{submittedTotal === null ? t("order.ask") : formatUsd(submittedTotal)}</b></div>
+                      <div><span>{t("order.service")}</span><b>{submittedBlessingService ? `${t("order.selected")} · ${formatUsd(blessingServiceFee)}` : t("order.notSelected")}</b></div>
+                    </div>
                     <p className="product-order-success-note">{t("payment.successNote", "We have received your payment and will prepare your blessing piece shortly.")}</p>
                     <button className="product-order-button" onClick={() => setOrderOpen(false)} type="button">{t("order.done")} <span>→</span></button>
                   </div>
