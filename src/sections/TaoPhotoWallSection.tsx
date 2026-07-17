@@ -1093,7 +1093,7 @@ export default function TaoPhotoWallSection() {
                       </dl>
                     </aside>
                     {orderError && <div className="product-order-error">{orderError}</div>}
-                    <Elements stripe={stripePromise}>
+                    <Elements stripe={stripePromise} options={{ locale: "en" }}>
                       <StripePaymentForm
                         clientSecret={paymentClientSecret ?? ""}
                         onSuccess={handlePaymentSuccess}
