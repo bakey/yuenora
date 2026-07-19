@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useI18n } from "../i18n";
 
 interface StripePaymentFormProps {
@@ -8,7 +8,7 @@ interface StripePaymentFormProps {
   onError: (message: string) => void;
 }
 
-const cardElementOptions = {
+const elementOptions = {
   style: {
     base: {
       fontSize: "16px",
@@ -41,15 +41,15 @@ export function StripePaymentForm({ clientSecret, onSuccess, onError }: StripePa
     onError("");
 
     try {
-      const cardElement = elements.getElement(CardElement);
+      const cardNumberElement = elements.getElement(CardNumberElement);
 
-      if (!cardElement) {
+      if (!cardNumberElement) {
         throw new Error(t("payment.cardElementMissing", "Card input not found."));
       }
 
       const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: cardElement,
+          card: cardNumberElement,
         },
       });
 
@@ -71,9 +71,25 @@ export function StripePaymentForm({ clientSecret, onSuccess, onError }: StripePa
 
   return (
     <form className="stripe-payment-form" onSubmit={handleSubmit}>
-      <label className="stripe-card-label">{t("payment.cardLabel", "Card details")}</label>
-      <div className="stripe-card-input">
-        <CardElement options={cardElementOptions} />
+      <div className="stripe-card-field">
+        <label className="stripe-card-label">{t("payment.cardNumber", "Card number")}</label>
+        <div className="stripe-card-input">
+          <CardNumberElement options={elementOptions} />
+        </div>
+      </div>
+      <div className="stripe-card-row">
+        <div className="stripe-card-field">
+          <label className="stripe-card-label">{t("payment.expiry", "Expiry")}</label>
+          <div className="stripe-card-input">
+            <CardExpiryElement options={elementOptions} />
+          </div>
+        </div>
+        <div className="stripe-card-field">
+          <label className="stripe-card-label">{t("payment.cvc", "CVC")}</label>
+          <div className="stripe-card-input">
+            <CardCvcElement options={elementOptions} />
+          </div>
+        </div>
       </div>
       <button type="submit" disabled={!stripe || processing} className="product-order-button">
         {processing ? t("payment.processing", "Processing...") : t("payment.payNow", "Pay Now")} <span>→</span>

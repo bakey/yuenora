@@ -4222,6 +4222,17 @@ body.modal-scroll-locked .dao-header{pointer-events:none!important}
   flex-direction:column!important;
   gap:16px!important;
 }
+.stripe-card-field{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  min-width:0!important;
+}
+.stripe-card-row{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:12px!important;
+}
 .stripe-card-label{
   display:block!important;
   font-size:12px!important;
@@ -4234,12 +4245,26 @@ body.modal-scroll-locked .dao-header{pointer-events:none!important}
   border:1px solid rgba(60,50,36,.22)!important;
   border-radius:10px!important;
   background:rgba(255,255,255,.72)!important;
+  min-height:48px!important;
+  box-sizing:border-box!important;
+}
+.stripe-card-input .StripeElement{
+  width:100%!important;
 }
 .stripe-secured-note{
   margin:0!important;
   font-size:11px!important;
   color:rgba(60,50,36,.55)!important;
   text-align:center!important;
+}
+@media (max-width: 760px){
+  .stripe-card-row{
+    grid-template-columns:1fr!important;
+  }
+  .stripe-card-input{
+    padding:12px 14px!important;
+    min-height:46px!important;
+  }
 }
 .blessing-service-confirm-modal{
   position:fixed!important;
