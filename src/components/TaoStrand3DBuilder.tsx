@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader, type GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { modelAssetUrl } from "../lib/assets";
 import type { TaoBeadModel } from "../data/taoDiyItems";
 
@@ -269,6 +270,9 @@ export default function TaoStrand3DBuilder({ beads, className, cordTheme = "red"
     const palette = getCordPalette(cordTheme);
 
     const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("/draco/");
+    loader.setDRACOLoader(dracoLoader);
     setLoadedCount(0);
 
     const useDecorativeCordModel = false;

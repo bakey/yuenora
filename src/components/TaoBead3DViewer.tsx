@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 type TaoBead3DViewerProps = {
@@ -101,7 +102,12 @@ export default function TaoBead3DViewer({ modelUrl, className, onLoaded }: TaoBe
     resizeObserver.observe(mount);
     resize();
 
-    new GLTFLoader().load(
+    const loader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("/draco/");
+    loader.setDRACOLoader(dracoLoader);
+
+    loader.load(
       modelUrl,
       (gltf) => {
         if (disposed) return;
