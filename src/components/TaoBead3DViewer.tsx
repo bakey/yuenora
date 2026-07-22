@@ -131,7 +131,8 @@ export default function TaoBead3DViewer({ modelUrl, className, onLoaded }: TaoBe
         onLoadedRef.current?.();
       },
       undefined,
-      () => {
+      (error) => {
+        console.error("TaoBead3DViewer load error:", error);
         setError(true);
         setLoading(false);
       },
